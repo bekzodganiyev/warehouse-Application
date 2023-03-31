@@ -16,5 +16,5 @@ public abstract class AbsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private boolean isActive;
+    private boolean isActive=true;
 }
