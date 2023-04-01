@@ -12,4 +12,10 @@ import lombok.experimental.PackagePrivate;
 public class Result {
     String message;
     Boolean status;
+    Object data;
+
+    public Result(String message, Boolean status) {
+        this.message = message;
+        this.status = status;
+    }
 }
