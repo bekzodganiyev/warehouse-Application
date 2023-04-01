@@ -7,40 +7,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("currency")
+@RequestMapping("/currency")
 public class CurrencyController {
 
     @Autowired
-    CurrencyService currencyservice;
+    CurrencyService currencyService;
 
     // Add currency
     @PostMapping
     public Result addMeasurement(@RequestBody Currency currency) {
-        return currencyservice.addCurrency(currency);
+        return currencyService.addCurrency(currency);
     }
 
     // Get all currencies
     @GetMapping
     public Result getAllCurrency() {
-        return currencyservice.getAllCurrency();
+        return currencyService.getAllCurrency();
     }
 
     // Get one currency
     @GetMapping("/{id}")
     public Result getCurrencyById(@PathVariable Integer id) {
-        return currencyservice.getCurrencyById(id);
+        return currencyService.getCurrencyById(id);
     }
 
     // Edit currency
     @PutMapping("/{id}")
     public Result editCurrency(@PathVariable Integer id, @RequestBody Currency currency) {
-        return currencyservice.editCurrency(id, currency);
+        return currencyService.editCurrency(id, currency);
     }
 
     // Delete currency
     @DeleteMapping("/{id}")
     public Result deleteCurrency(@PathVariable Integer id) {
-        return currencyservice.deleteCurrency(id);
+        return currencyService.deleteCurrency(id);
     }
 
 }
