@@ -13,7 +13,7 @@ public class MeasurementController {
     @Autowired
     MeasurementService measurementService;
 
-    // Add method
+    // Add measurement
     @PostMapping
     public Result addMeasurement(@RequestBody Measurement measurement) {
         return measurementService.addMeasurement(measurement);
