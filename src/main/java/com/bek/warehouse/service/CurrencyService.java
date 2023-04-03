@@ -28,7 +28,7 @@ public class CurrencyService {
 
     public Result getCurrencyById(Integer id) {
         Optional<Currency> optionalCurrency = currencyRepository.findById(id);
-//        return optionalCurrency.isPresent()?new Result("OK",true,optionalMeasurement.get()):new Result("Not found",false);
+//        return optionalCurrency.isPresent()?new Result("OK",true,optionalCurrency.get()):new Result("Not found",false);
         return optionalCurrency.map(currency -> new Result("OK", true, currency)).orElseGet(() -> new Result("Not found", false));
     }
 
