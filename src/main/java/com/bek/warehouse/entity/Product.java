@@ -18,7 +18,7 @@ import lombok.experimental.PackagePrivate;
 @PackagePrivate
 public class Product extends AbsEntity {
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     Category category;
 
     @OneToOne
@@ -26,7 +26,7 @@ public class Product extends AbsEntity {
 
     String code;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     Measurement measurement;
 
 

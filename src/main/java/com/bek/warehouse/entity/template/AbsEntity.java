@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @MappedSuperclass
-
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class AbsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
