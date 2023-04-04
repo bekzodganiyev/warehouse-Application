@@ -33,6 +33,11 @@ public class CategoryController {
         return categoryService.editCategory(id,categoryDto);
     }
 
+    @DeleteMapping("/{id}")
+    public Result deleteCategory(@PathVariable Integer id){
+        return categoryService.deleteCategory(id);
+    }
+
 
 
 }

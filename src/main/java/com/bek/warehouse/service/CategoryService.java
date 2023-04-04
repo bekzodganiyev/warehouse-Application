@@ -1,14 +1,12 @@
 package com.bek.warehouse.service;
 
 import com.bek.warehouse.entity.Category;
-import com.bek.warehouse.entity.Currency;
 import com.bek.warehouse.payload.CategoryDto;
 import com.bek.warehouse.payload.Result;
 import com.bek.warehouse.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +17,8 @@ public class CategoryService {
 
     public Result addCategory(CategoryDto categoryDto) {
         Category category = new Category();
-        if (categoryDto.getName()!=null) {
-            if (categoryDto.getParentCategoryId()==null) {
+        if (categoryDto.getName() != null) {
+            if (categoryDto.getParentCategoryId() == null) {
                 category.setName(categoryDto.getName());
             }
             if (categoryRepository.existsById(categoryDto.getParentCategoryId())) {
@@ -28,13 +26,13 @@ public class CategoryService {
                 category.setParentCategory(categoryRepository.findById(categoryDto.getParentCategoryId()).get());
             }
             Category savedCategory = categoryRepository.save(category);
-            return new Result("Saved !!!",true,savedCategory);
+            return new Result("Saved !!!", true, savedCategory);
         }
-        return new Result("Not save , category name is empty",false);
+        return new Result("Not save , category name is empty", false);
     }
 
     public Result getAllCategory() {
-        return new Result("All category",true,categoryRepository.findAll());
+        return new Result("All category", true, categoryRepository.findAll());
     }
 
     public Result getCategoryById(Integer id) {
@@ -43,8 +41,22 @@ public class CategoryService {
         return optionalCategory.map(category -> new Result("OK", true, category)).orElseGet(() -> new Result("Not found", false));
     }
 
-
     public Result editCategory(Integer id, CategoryDto categoryDto) {
-        return null;
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isPresent()) {
+            Category editingCategory = optionalCategory.get();
+            editingCategory.setName(categoryDto.getName());
+            Category editedCategory = categoryRepository.save(editingCategory);
+            return new Result("Edited !!!", true, editedCategory);
+        }
+        return new Result("Not Edited", false);
+    }
+
+    public Result deleteCategory(Integer id) {
+        if (categoryRepository.existsById(id)) {
+            categoryRepository.deleteById(id);
+            return new Result("Deleted !!!", true);
+        }
+        return new Result("This category is not exist !!!", false);
     }
 }

@@ -32,7 +32,6 @@ public class CurrencyService {
         return optionalCurrency.map(currency -> new Result("OK", true, currency)).orElseGet(() -> new Result("Not found", false));
     }
 
-
     public Result editCurrency(Integer id, Currency currency) {
         Optional<Currency> optionalCurrency = currencyRepository.findById(id);
         if (optionalCurrency.isPresent()) {
