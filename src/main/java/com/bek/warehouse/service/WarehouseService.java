@@ -1,6 +1,5 @@
 package com.bek.warehouse.service;
 
-import com.bek.warehouse.entity.Currency;
 import com.bek.warehouse.entity.Warehouse;
 import com.bek.warehouse.payload.Result;
 import com.bek.warehouse.repository.WarehouseRepository;
@@ -32,7 +31,6 @@ public class WarehouseService {
 //        return optionalWarehouse.isPresent()?new Result("OK",true,optionalMeasurement.get()):new Result("Not found",false);
         return optionalWarehouse.map(warehouse -> new Result("OK", true, warehouse)).orElseGet(() -> new Result("Not found", false));
     }
-
 
     public Result editWarehouse(Integer id, Warehouse warehouse) {
         Optional<Warehouse> optionalWarehouse = warehouseRepository.findById(id);
