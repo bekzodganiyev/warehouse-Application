@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -17,7 +18,7 @@ public class Input {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Timestamp date;
+    private LocalTime date;
 
     @ManyToOne
     private Warehouse warehouse;
@@ -28,8 +29,17 @@ public class Input {
     @ManyToOne
     private Currency currency;
 
-    private String factureNumber;
+    private Integer factureNumber;
 
     @Column(unique = true, nullable = false)
     private String code;
+
+    public Input(LocalTime date, Warehouse warehouse, Supplier supplier, Currency currency, Integer factureNumber, String code) {
+        this.date = date;
+        this.warehouse = warehouse;
+        this.supplier = supplier;
+        this.currency = currency;
+        this.factureNumber = factureNumber;
+        this.code = code;
+    }
 }
